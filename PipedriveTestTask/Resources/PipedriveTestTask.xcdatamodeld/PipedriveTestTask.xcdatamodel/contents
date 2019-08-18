@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ContactInfo" representedClassName="StoredContactInfo" syncable="YES" codeGenerationType="class">
+        <attribute name="isPrimary" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="label" attributeType="String" syncable="YES"/>
+        <attribute name="value" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Person" representedClassName="StoredPerson" codeGenerationType="class">
+        <attribute name="id" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="organizationName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="avatar" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Picture" syncable="YES"/>
+        <relationship name="emails" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ContactInfo" syncable="YES"/>
+        <relationship name="phones" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ContactInfo" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+        <userInfo/>
+    </entity>
+    <entity name="Picture" representedClassName="StoredPicture" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isActive" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="source" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Source" inverseName="picture" inverseEntity="Source" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Source" representedClassName="StoredSource" syncable="YES" codeGenerationType="class">
+        <attribute name="medium" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="small" optional="YES" attributeType="URI" syncable="YES"/>
+        <relationship name="picture" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Picture" inverseName="source" inverseEntity="Picture" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Person" positionX="261" positionY="189" width="128" height="133"/>
+        <element name="ContactInfo" positionX="5.15234375" positionY="204.55859375" width="128" height="88"/>
+        <element name="Picture" positionX="286.2734375" positionY="403.54296875" width="128" height="88"/>
+        <element name="Source" positionX="48.24609375" positionY="391.97265625" width="128" height="88"/>
+    </elements>
+</model>
